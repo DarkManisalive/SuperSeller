@@ -4,8 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:active {
+            background-color: #3d8b40;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <button>Start Chat</button>
+    <div class="container">
+        <h1>Click the button to run Python script</h1>
+        <button onclick="runPythonScript()">Start Chat</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        function runPythonScript() {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = 'Running...';
+            statusDiv.style.color = '#4CAF50';
+
+            fetch('http://localhost:5000/run-script', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                statusDiv.textContent = data.message;
+                statusDiv.style.color = '#4CAF50';
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                statusDiv.textContent = 'Error: ' + error.message;
+                statusDiv.style.color = '#d32f2f';
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
