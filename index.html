@@ -59,11 +59,12 @@
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.json())
-            .then(data => {
-                statusDiv.textContent = data.message;
-                statusDiv.style.color = '#4CAF50';
-                console.log('Success:', data);
+            .then(response => response.text())
+            .then(html => {
+                // Replace entire page with StartChat.html content
+                document.open();
+                document.write(html);
+                document.close();
             })
             .catch(error => {
                 statusDiv.textContent = 'Error: ' + error.message;

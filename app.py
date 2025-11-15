@@ -26,13 +26,12 @@ def run_script():
     """Handle button click and run Python script in background"""
     # Run script in a separate thread so it doesn't block the response
     thread = threading.Thread(target=run_background_script)
-    thread.daemon = True
+    thread.daemon = False
     thread.start()
+    thread.join()  # Wait for background task to complete
     
-    return jsonify({
-        'message': 'Python script started in background!',
-        'status': 'success'
-    })
+    return render_template('StartChat.html')
+
 
 @app.route('/')
 def index():
