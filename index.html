@@ -65,8 +65,6 @@
                 document.open();
                 document.write(html);
                 document.close();
-                fetch('http://localhost:5000/StartChat.html')
-                .then(response => response.text()) 
                 
             })
             .catch(error => {
