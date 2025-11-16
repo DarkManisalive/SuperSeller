@@ -3,6 +3,7 @@ from flask_cors import CORS
 import subprocess
 import threading
 import os
+import time
 
 app = Flask(__name__)
 CORS(app)
@@ -26,11 +27,12 @@ def run_script():
     """Handle button click and run Python script in background"""
     # Run script in a separate thread so it doesn't block the response
     thread = threading.Thread(target=run_background_script)
-    thread.daemon = False
+    thread.daemon = True
     thread.start()
     thread.join()  # Wait for background task to complete
     
-    return render_template('StartChat.html')
+    return render_template('StartChat.html') 
+    
 
 
 @app.route('/')
