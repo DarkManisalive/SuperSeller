@@ -17,6 +17,6 @@ def main():
     return YourUserName
 def render_name():
     YourUserName=main()
-    return render_template('StartChat.html',name=YourUserName)
+    return YourUserName
 if __name__ == '__main__':
     main()

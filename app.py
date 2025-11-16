@@ -31,7 +31,7 @@ def run_script():
     thread.start()
     thread.join()  # Wait for background task to complete
     
-    return render_template('StartChat.html',name=render_name) 
+    return render_template('StartChat.html',name=render_name()) 
     
 
 
