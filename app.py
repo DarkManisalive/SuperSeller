@@ -4,7 +4,7 @@ import subprocess
 import threading
 import os
 import time
-
+from background_task import render_name, main
 app = Flask(__name__)
 CORS(app)
 
@@ -31,7 +31,7 @@ def run_script():
     thread.start()
     thread.join()  # Wait for background task to complete
     
-    return render_template('StartChat.html') 
+    return render_template('StartChat.html',name=render_name) 
     
 
 

@@ -14,8 +14,9 @@ def main():
     else:
         with open("UserNameForWeb.txt", "a") as Mainfile:
             Mainfile.write(YourUserName + "\n")
-
-    return render_template('StartChat.html', name=YourUserName)
-
+    return YourUserName
+def render_name():
+    YourUserName=main()
+    return render_template('StartChat.html',name=YourUserName)
 if __name__ == '__main__':
     main()
