@@ -6,11 +6,13 @@
     <title>Document</title>
 </head>
 <body>
+    <p>Your current user Name: ({{name}})</p>
         <form action="DataBase">
             <label for="username">Search</label>
-            <input type="search" id="username" name="username" required>
+            <input type="search" id="username" Searchedname="username" required placeholder="Enter Name to Search">
+            <button type="submit">Submit</button>
+            <div id="status"></div>
         </form>
-
-        <h1>{{name}}</h1>
+        <h1>{{Searchedname}}</h1>
 </body>
 </html>
