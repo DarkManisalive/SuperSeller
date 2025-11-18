@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 import subprocess
 import threading
@@ -39,6 +39,19 @@ def run_script():
 def index():
     """Serve the HTML file"""
     return render_template('index.html')
+
+@app.route('/Name_For_Chat', methods=['GET'])
+def get_name_for_chat():
+    data=request.get_json()
+    name=data['name'].strip()
+    with open("UserNameForWeb.txt", "r") as Mainfile:
+        list_of_names = Mainfile.readlines()
+        Mainfile = [name.strip() for name in list_of_names]
+    def check_name():
+        if name in list_of_names:
+            return jsonify({'exists': True})
+        else:
+            return jsonify({'exists': False})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

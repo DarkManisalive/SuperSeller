@@ -7,12 +7,30 @@
 </head>
 <body>
     <p>Your current user Name: ({{name}})</p>
-        <form method="post">
-            <label for="username">Search</label>
-            <input type="search" id="username" Searchedname="username" required placeholder="Enter Name to Search">
-            <button type="submit">Submit</button>
-            <div id="status"></div>
-        </form>
+       <input type="text" id="Searchedname" name="Searchedname" placeholder="Enter Name to Chat">
+       <button onclick="submitName()">Send request</button>
+       <script>
+        function submitName() {
+            const nameInput = document.getElementById('Searchedname');
+            const name = nameInput.value;
+
+            fetch('http://localhost:5000/Name_For_Chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ Searchedname: name })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('exists', data);
+                // Optionally update the UI based on the response
+            })
+            .catch((error) => {
+                console.error('exists', error);
+            });
+        }
+       </script>
         <h1>{{Searchedname}}</h1>
 </body>
 </html>
