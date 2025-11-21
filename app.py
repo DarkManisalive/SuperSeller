@@ -34,7 +34,6 @@ def run_script():
     return render_template('StartChat.html',name=render_name()) 
     
 
-
 @app.route('/')
 def index():
     """Serve the HTML file"""
@@ -43,7 +42,7 @@ def index():
 @app.route('/Name_For_Chat', methods=['GET'])
 def get_name_for_chat():
     data=request.get_json()
-    name=data['name'].strip()
+    name=data.get['Searchedname'].strip()
     with open("UserNameForWeb.txt", "r") as Mainfile:
         list_of_names = Mainfile.readlines()
         Mainfile = [name.strip() for name in list_of_names]

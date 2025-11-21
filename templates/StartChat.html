@@ -9,6 +9,7 @@
     <p>Your current user Name: ({{name}})</p>
        <input type="text" id="Searchedname" name="Searchedname" placeholder="Enter Name to Chat">
        <button onclick="submitName()">Send request</button>
+       <p id='result'></p>
        <script>
         function submitName() {
             const nameInput = document.getElementById('Searchedname');
@@ -19,14 +20,16 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ Searchedname: name })
+                body: JSON.stringify({ Searchedname: Searchedname })
             })
             .then(response => response.json())
             .then(data => {
-                console.log('exists', data);
+                document.getElementById("result").innerText = data.exists;
+
                 // Optionally update the UI based on the response
             })
             .catch((error) => {
+                document.getElementById("result").innerText = "An error occurred";
                 console.error('exists', error);
             });
         }
