@@ -13,7 +13,7 @@ def main():
         main()
     else:
         with open("UserNameForWeb.txt", "a") as Mainfile:
-            Mainfile.write(YourUserName + "\n")
+            Mainfile.write(YourUserName + '\n')
     return YourUserName
 def render_name():
     YourUserName=main()

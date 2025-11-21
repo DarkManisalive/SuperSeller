@@ -43,6 +43,7 @@ def index():
 def get_name_for_chat():
     data=request.get_json()
     name=data.get['Searchedname'].strip()
+    print(name)
     with open("UserNameForWeb.txt", "r") as Mainfile:
         list_of_names = Mainfile.readlines()
         Mainfile = [name.strip() for name in list_of_names]
