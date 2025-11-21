@@ -6,6 +6,19 @@
     <title>Document</title>
 </head>
 <body>
+    <script>
+        // Fetch and display the current user's name
+        fetch('http://localhost:5000/render_MY_name', {
+            method: 'GET'})
+            .then(response => response.json())
+            .then(data => {
+                document.body.innerHTML = document.body.innerHTML.replace('{{name}}', data.username);
+            })
+            .catch((error) => {
+                console.error('Error fetching username:', error);
+            });
+
+    </script>
     <p>Your current user Name: ({{name}})</p>
        <input type="text" id="Searchedname" name="Searchedname" placeholder="Enter Name to Chat">
        <button onclick="submitName()">Send request</button>
@@ -31,6 +44,5 @@
             });
         }
        </script>
-        <h1>{{Searchedname}}</h1>
 </body>
 </html>

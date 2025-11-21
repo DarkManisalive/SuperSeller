@@ -1,10 +1,10 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect
 from flask_cors import CORS
 import subprocess
 import threading
 import os
 import time
-from background_task import render_name, main
+from background_task import main
 app = Flask(__name__)
 CORS(app)
 
@@ -30,8 +30,7 @@ def run_script():
     thread.daemon = True
     thread.start()
     thread.join()  # Wait for background task to complete
-    
-    return render_template('StartChat.html',name=render_name()) 
+    return redirect('/StartChat.html')
     
 
 
@@ -52,6 +51,11 @@ def get_name_for_chat():
             return jsonify({'exists': True})
         else:
             return jsonify({'exists': False})
+    return check_name()
 
+@app.route('/MyUserName_For_Chat', methods=['POST'])
+def render_MY_name():
+    YourUserName=main()
+    return YourUserName
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
