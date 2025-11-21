@@ -13,7 +13,7 @@ def main():
         main()
     else:
         with open("UserNameForWeb.txt", "a") as Mainfile:
-            Mainfile.write(YourUserName + "\n")
+            Mainfile.write(YourUserName + '\n')
     return YourUserName
 if __name__ == '__main__':
     main()
